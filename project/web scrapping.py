@@ -58,4 +58,4 @@ with open('output.csv', 'w', newline='') as output_f:
         output_writer.writerow(row)
 
 
-driver.quit()
+
