@@ -40,4 +40,6 @@ with open('books.csv', 'w', newline='', encoding='utf-8') as csv_file:
         else:
             break
 
+
+
 driver.quit()

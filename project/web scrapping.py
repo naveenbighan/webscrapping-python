@@ -2,10 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
 from bs4 import BeautifulSoup
-import re
+import re,pymongo
 import csv
 
 
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+db=client["amazon_data"]
+amazon_data_collection=db["amazon_data_collection"]
 driver = Chrome()
 
 
@@ -51,6 +54,8 @@ for gender in gender_options[1:]:
         
         usa_lst.append(val_lst)
 
+
+result=amazon_data_collection.insert_many(usa_lst)
 
 with open('output.csv', 'w', newline='') as output_f:
     output_writer = csv.writer(output_f)

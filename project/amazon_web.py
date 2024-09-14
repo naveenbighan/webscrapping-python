@@ -1,7 +1,10 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import csv
-import time
+import time,pymongo
+
+
+
 
 driver = webdriver.Chrome()
 
@@ -33,4 +36,5 @@ with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
     writer.writeheader()  
     writer.writerows(products_data)
 
-print(f"Data has been successfully saved to {csv_file}")
+
+

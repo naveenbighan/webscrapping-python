@@ -2,10 +2,12 @@ from bs4 import BeautifulSoup as BS
 import requests
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-import time
+import time,pymongo
 import pandas as pd
 
-
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+db=client["imbd_data"]
+imbd_data_collection=db["imbd_data_collection"]
 
 
 driver=webdriver.Chrome()
@@ -36,10 +38,13 @@ for movie in movies:
     movie_dict={"Movie": name.get_text(),
         "Year": first_div.text,
         "Rating": ratings_f_div.text}
-    movie_data.append(movie_dict)
+    # movie_data.append(movie_dict)
 
-    df =pd.DataFrame(movie_data)
-    df.to_csv("topratingmovies.csv", index=False)
+if movie_data:   
+   imbd_data_collection.insert_many(movie_dict)
+
+df =pd.DataFrame(movie_data)
+df.to_csv("topratingmovies.csv", index=False)
     
 
         
