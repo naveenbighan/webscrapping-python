@@ -10,7 +10,7 @@ type_list = ['part-time', 'Full-time', 'Permanent', 'Internship']
 # Fill NaN values in the 'type' column with random choices from type_list
 df['type'] = df['type'].apply(lambda x: random.choice(type_list) if pd.isna(x) else x)
 
-salary_range =(30000, 100000)
+salary_range =(10000, 80000)
 
 # Fill NaN values with random numbers within the salary range
 df['salary_package'] = df['salary_package'].apply(
@@ -30,6 +30,8 @@ def add_currency_symbol(value):
 
 # Apply the function to the salary_package column
 df['salary_package'] = df['salary_package'].apply(add_currency_symbol)
-print(df['salary_package'])
+
+
+df.to_csv("cleaned_indeed_jobs.csv", index=False,encoding='utf-8-sig')
 
 
