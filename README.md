@@ -1,2 +1,2 @@
 # learning webScrapping
-   using selenium and BeautifulSoup and requests modules  python
+   using selenium and BeautifulSoup and requests modules from python
